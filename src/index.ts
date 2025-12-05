@@ -1,12 +1,16 @@
 import express from 'express';
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.get('/', (_req, res) => {
   res.send('Hello!');
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+if (require.main === module) {
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+
+export { app };
